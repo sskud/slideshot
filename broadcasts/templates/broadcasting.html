@@ -1,0 +1,201 @@
+{% extends 'page.html'%}
+{% load static %}
+{% block title %}
+	Презентация {% if broadcasting.title|length != 0 %} {{broadcasting.title}} {% else %} Без Названия {% endif %}
+{% endblock%}
+{% block content %}
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+	
+<style type="text/css">
+h2 em {
+    font: normal 80%/100% Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+#largeImg {
+
+    width: 600px;
+    padding: 1px;
+}
+.thumbs img {
+
+    width: 60px;
+    padding: 1px;
+}
+.thumbs img:hover {
+    border: solid 1px #000000;
+}
+</style>
+<style>
+#main {
+    position:relative;
+    margin: 100px auto;
+    padding: 5px;
+    width: 660px;
+    height: 400px;
+    /*background-color: silver;
+    border: 5px solid grey;
+    border-radius:15px;*/
+}
+#scr {
+    margin:20px auto;
+    width: 600px;
+    height: 400px;
+    margin-top:20px;
+    background-color: white;
+    background-size:cover;
+   /* border: 2px solid black;
+    border-radius:10px;*/
+}
+button {
+    position: absolute;
+    top: 200px;
+    width: 25px;
+    height: 70px;
+    font: 12pt arial,tahoma,sans-serif;
+    text-align: center;
+}
+.left {
+    left:5px;
+}
+.right {
+    right:5px;
+}
+</style>
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+<script type="text/javascript">
+	/*$(document).ready(function(){
+    	$("h2").append('<em></em>')
+    	$(".thumbs a").click(function(){
+	        var largePath = $(this).attr("href");
+        	var largeAlt = $(this).attr("title");
+        	$("#largeImg").attr({ src: largePath, alt: largeAlt });
+        	$("h2 em").html(" (" + largeAlt + ")"); return false;
+    	});
+	});
+	*/
+var SLIDER = SLIDER || {};
+SLIDER.broadcasting = {{broadcasting.pk}};
+
+SLIDER.frame = 0;
+SLIDER.slides = new Array();
+	
+SLIDER.setImage = function(image) {
+	//alert(image);
+	$("#scr").css({'background-image': 'url('+image+')'});
+};
+
+SLIDER.addImage = function(image){
+	
+};
+
+function init() {
+	var request = $.ajax({
+						url : '/api/slide/'+SLIDER.broadcasting+'/',
+						type : "GET",
+						timeout : 7000,
+					});
+	
+		request.done(function(result){
+						failed_requests_in_a_row = 0;
+						
+			            var data = result;
+			            //мб не пашет
+			            if (data.length == 0) {
+			            	return;
+			            }
+			            for(var i = 0;i<data.length;++i){
+			            	SLIDER.slides.push(data[i].file);
+			            }
+			            SLIDER.setImage(SLIDER.slides[SLIDER.frame]);
+		});
+	
+		request.fail(function(jqXHR, textStatus) {
+							//console.log(textStatus);
+	            			/* Seems to happen on hibernate, the request will restart. */
+	            		
+	            			/* A fail has happened, increment the counter. */
+	            			failed_requests_in_a_row += 1;
+					});
+	
+}
+function left() {
+	SLIDER.frame--;
+    if(SLIDER.frame < 0) SLIDER.frame = SLIDER.slides.length-1;
+    SLIDER.setImage(SLIDER.slides[SLIDER.frame]);
+}	
+function right() {
+	SLIDER.frame++;
+    if(SLIDER.frame == SLIDER.slides.length) SLIDER.frame = 0;
+    SLIDER.setImage(SLIDER.slides[SLIDER.frame]);
+}
+/*document.onkeydown = function(event) {
+		var ltArrow = 37;
+ 		var rtArrow = 39;
+ 		var thisKey = (evt) ? evt.which : window.event.keyCode;
+ 		if (thisKey == ltArrow) {
+ 			this.frame--;
+    	   	if(this.frame < 0) this.frame = this.slides.length-1;
+    	   	SLIDER.setImage(this.slides[this.frame]);
+ 		}
+ 		else if (thisKey == rtArrow) {
+ 			this.frame++;
+    	   	if(this.frame == this.slides.length) this.frame = 0;
+    	   	SLIDER.setImage(this.slides[this.frame]);
+ 		}
+ 		return event;
+	}
+*/
+window.onload = function() { // запуск слайдера после загрузки документа
+    init();
+    //setInterval(function() { // ставим пятисекундный интервал для перелистывания картинок
+    //    slider.right();
+    //},5000);
+};
+</script>
+	<!-- container -->
+	<div class="container">
+
+	<!--	<ol class="breadcrumb">
+			<li><a href="index.html">Главная</a></li>
+			<li class="active">Просмотр трансляции</li>
+		</ol> -->
+			
+		<div class="row">
+			
+			<!-- Article main content -->
+			<header class="page-header">
+					<h1 class="page-title">{{ broadcasting.title }}</h1>
+				</header>
+			<article class="col-sm-8 maincontent">
+								
+				<!--Slider-->
+				<div id="main">
+    				<button class="left" onclick="left();" class="btn btn-default" role="button"><</button>
+    				<div id="scr"></div>
+   					<button class="right" onclick="right();" class="btn btn-default" role="button">></button>
+				</div>	
+				<!--End of Slider-->
+				
+			</article>
+			<!-- /Article -->
+			
+			<!-- Sidebar -->
+			<aside class="col-sm-4 sidebar sidebar-right">
+
+				<div class="widget">
+					<h4>Описание:</h4>
+					<ul class="list-unstyled list-spaces">
+						<li>Автор:<br><span class="small text-muted"><a href="#cabinet">{{broadcasting.owner.username}}</a></span></li>
+						<li>Дата:<br><span class="small text-muted">{{broadcasting.start_date}}</span></li>
+						<li>Описание:<br><span class="small text-muted">{{broadcasting.desc}}</span></li>
+					</ul>
+				</div>
+
+			</aside>
+			<!-- /Sidebar -->
+
+		</div>
+	</div>	<!-- /container -->
+
+	<script src="{{ STATIC_URL }}js/slider1.js"></script>
+{% endblock %}

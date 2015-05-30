@@ -1,0 +1,4 @@
+Registration is completed.
+Please, go to this link in order to activate your account:
+{{ site }}/accounts/activate/{{ activation_key }}/
+Thank you!

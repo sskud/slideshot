@@ -1,0 +1,20 @@
+{% extends 'base_index.html'%}
+{% load static %}
+{% block titles %}
+	Доступные презентаций
+{% endblock%}
+
+
+{% block content %}
+
+
+{% for broadcasting in broadcastings %}
+	<div>
+		<a href="{% url 'broadcasts.views.broadcasting' broadcasting.pk %}"><h1>{{ broadcasting.title }}</h1></a>
+	</div>
+{% empty %}
+	<p>Нет доступных презентаций</p>
+{% endfor %}
+
+
+{% endblock%}

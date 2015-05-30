@@ -1,0 +1,20 @@
+{% extends 'base_index.html'%}
+{% load static %}
+{% block titles %}
+	Доступные каналы
+{% endblock%}
+
+
+{% block content %}
+
+
+{% for event in events %}
+	<div>
+		<a href="{% url 'broadcasts.views.event' event.pk %}"><h1>{{ event.title }}</h1></a>
+	</div>
+{% empty %}
+	<p>Нет доступных каналов!</p>
+{% endfor %}
+
+
+{% endblock%}

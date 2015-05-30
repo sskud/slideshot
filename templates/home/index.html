@@ -1,0 +1,13 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+            Welcome back {{ user.username }}
+        {% else %}
+            You are not logged in
+        {% endif %}
+    </body>
+</html>

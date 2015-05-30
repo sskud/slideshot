@@ -1,0 +1,38 @@
+{% extends 'page.html'%}
+{% load static %}
+
+{% block title %}
+	Доступные каналы
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<a href="{% url 'broadcasts.views.broadcasting_list' %}"><h1>Презентации</h1></a>
+			{% for broadcasting in broadcastings %}
+				<div>
+					<a href="{% url 'broadcasts.views.broadcasting' broadcasting.pk %}"><h2>{{ broadcasting.title }}</h2></a>
+				</div>
+			{% empty %}
+				<p>Нет доступных презентаций</p>
+			{% endfor %}
+		</div>
+		<div class="col-md-6">
+		<a href="{% url 'broadcasts.views.event_list' %}"><h1>События</h1></a>
+			{% for event in events %}
+				<div>
+					<a href="{% url 'broadcasts.views.event' event.pk %}"><h2>{{ event.title }}</h2></a>
+				</div>
+			{% empty %}
+				<p>Нет доступных событий!</p>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock%}

@@ -1,0 +1,91 @@
+{% extends 'page.html'%}
+{% load static %}
+{% block titles %}
+	Презентация {% if broadcasting.title|length != 0 %} {{broadcasting.title}} {% else %} Без Названия {% endif %}
+{% endblock%}
+{% block content %}
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+    	$("h2").append('<em></em>')
+    	$(".thumbs a").click(function(){
+	        var largePath = $(this).attr("href");
+        	var largeAlt = $(this).attr("title");
+        	$("#largeImg").attr({ src: largePath, alt: largeAlt });
+        	$("h2 em").html(" (" + largeAlt + ")"); return false;
+    	});
+	});
+	</script>
+<style type="text/css">
+h2 em {
+    font: normal 80%/100% Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+#largeImg {
+
+    width: 600px;
+    padding: 1px;
+}
+.thumbs img {
+
+    width: 60px;
+    padding: 1px;
+}
+.thumbs img:hover {
+    border: solid 1px #000000;
+}
+</style>
+		<script type="text/javascript" >
+			var broadcasting = {{broadcasting.pk}};
+		</script>
+	<!-- container -->
+	<div class="container">
+
+	<!--	<ol class="breadcrumb">
+			<li><a href="index.html">Главная</a></li>
+			<li class="active">Просмотр трансляции</li>
+		</ol> -->
+			
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-sm-8 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Трансляция #1</h1>
+				</header>
+		{% if slides %}	
+			{% with slides|first as firstslide %}
+		    <img id="largeImg" src="{{ firstslide.file.url }}" alt="Slide #0" />
+		    {% endwith %}
+		    
+		    <p class="thumbs">
+			{% for slide in slides %}
+		      	<a href="{{ slide.file.url }}" title="Slide #{{ slide.position }}"><img src="{{ slide.file.url }}" /></a>
+		    {% endfor %}
+			</p>
+		{% else %}		
+			Пока нет слайдов
+		{% endif %}
+			</article>
+			<!-- /Article -->
+			
+			<!-- Sidebar -->
+			<aside class="col-sm-4 sidebar sidebar-right">
+
+				<div class="widget">
+					<h4>Описнаие:</h4>
+					<ul class="list-unstyled list-spaces">
+						<li>Автор:<br><span class="small text-muted"><a href="">Автор красавчик</a></span></li>
+						<li>Канал:<br><span class="small text-muted"><a href="">Канал такой-то</a></span></li>
+						<li>Дата:<br><span class="small text-muted">01.01.0001 00:00</span></li>
+						<li>Описание:<br><span class="small text-muted">Лвимпларимжлмиж дмр ымд ыои вмржом. Влрик маи лмижло. ОПА </span></li>
+					</ul>
+				</div>
+
+			</aside>
+			<!-- /Sidebar -->
+
+		</div>
+	</div>	<!-- /container -->
+	<script src="{{ STATIC_URL }}js/slider.js"></script>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block titles %}
+
+{% endblock%}
+
+
+{% block content %}
+<div class="container">
+  <br>
+  <div class="col-md-5">
+  	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+    	{% for slide in slides %}
+    		<li data-target="#myCarousel" 
+    			data-slide-to="{{ slide.position }}" 
+    			{% if slide.position == 0 %}
+    				class="active"
+    			{% endif %}
+    		></li>
+    	{% endfor %}
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+    
+    {% for slide in slides %}
+      {% if slide.position == 0 %}
+      	<div class="item active">
+      {% else %}
+      	<div class="item">
+      {% endif %}
+      	<img src="{{ slide.file.url }}" alt="{{ slide.position }}" width="460" height="345">
+      	</div>
+     {% endfor %}
+     
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  </div>
+</div>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="{% static 'js/slider/slider.js' %}"></script>
+
+{% endblock%}

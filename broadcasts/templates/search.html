@@ -1,0 +1,62 @@
+{% extends 'page.html'%}
+{% load static %}
+{% block title %}
+	Список презентаций
+{% endblock%}
+{% block content %}
+
+<div class="container">
+
+			<ol class="breadcrumb">
+				<li><a href="http://slideshot.leidenit.lclients.ru/">Главная</a></li>
+				<li class="active">Презентации</li>
+			</ol>
+
+			<div class="row">
+			
+				<!-- Article main content -->
+				<article class="col-sm-8 maincontent">
+					<header class="page-header">
+						<h1 class="page-title">Список презентаций</h1>
+					</header>
+					{% for broadcasting in broadcastings %}
+						<article>
+							<img src="{{ STATIC_URL }}assets/images/ss1.png" width="350" class="img-rounded cells" alt="" >
+							<div>
+								<h3><a href="{% url 'broadcasts.views.broadcasting' broadcasting.pk %}">{{ broadcasting.title }}</a></h3>
+								<h5 class="meta-post"><time datetime="2013-11-10">{{ broadcasting.start_date }}</time></h5>
+								<p>{{ broadcasting.desc }}</p>	
+							</div>
+						</article>	
+						{% empty %}
+						<article class="col-sm-8 maincontent">
+							<h1 class="page-title">Ничего не найдено</h1>		
+							<h4 class="text-left">Мы не смогли найти страницы по вашему запросу. Проверьте введенную вами страницу и попробуйте еще раз.</h4>
+						</article>								
+					{% endfor %}
+					<!-- 	 <div id="breadcrubm">
+							<ol class="breadcrumb">
+							 {% if broadcasts.has_previous %}
+								<li id="older" class="pagination-nav"><a href="?page={{ broadcasts.previous_page_number }}" class="btn btn-default" role="button"> <<< </a></li> 
+								{% endif %}
+								
+								{% if broadcasting.has_next %}
+								<li id="newer" class="pagination-nav"><a href="?page={{ broadcasting.next_page_number }}" class="btn btn-default" role="button"> >>> </a></li>  
+							    {% endif %}
+							</ol>
+						</div>	 -->
+				</article>									
+
+				<!-- 	<aside role="complementary" class="sidebar column three last">
+						<div class="column">
+					<div id="sb-search" class="sb-search">
+						<form action="#" class="search-form">
+  							<input type="search" class="search" placeholder="Поиск по сайту..."><input type="submit" class="btn btn-default btn-lg" role="button" value="Найти">
+						</form>
+					</div>
+				</div>						
+					</aside> -->
+			</div><!-- row-content -->
+		</div><!-- row -->
+		
+{% endblock %}

@@ -1,0 +1,10 @@
+mysql-python
+django==1.7.1
+django-allauth
+django-loginza
+django-filebrowser
+django-grappelli
+django-tinymce
+Pillow
+djangorestframework
+markdown       

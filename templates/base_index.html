@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{% block titles %}{% endblock%}</title>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/bootstrap.min.css">
+</head>
+<body>
+
+<div id="content-page">
+            
+    <div class="white-background">
+        <div class="header-menu center">
+          <div class="inner-center">
+                <a id="logotype" class="block left" href="/"></a>
+                <ul id="main-menu">
+                <li>
+                    <a href="#">О проекте</a>
+                </li>
+                <li>
+                    <a href="#">Архив</a>
+                </li>
+                </ul>
+            <div class="right nowrap">
+
+                <div align="right"><a class="button-1 bold" onclick=" " href="#">Регистрация</a>
+                  <a class="button-1 bold" onclick=" " href="#">Войти</a></div>
+
+            </div>
+            <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% csrf_token %}
+{% block content %}
+{% endblock %}
+<div class="page-padding-bottom"></div>
+<footer>
+    <div class="top-inset-shadow"></div>
+    <div class="top-footer">
+        <div class="center">
+            <div class="inner-center share-buttons">
+                <div class="footer-contacts nowrap">Есть вопрос?&nbsp;<a class="bold" target="_blank" href="mailto:cdtnf96@bk.ru">slideshot.viditory@gmail.com</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-footer">
+        <div class="center">
+            <div class="inner-center">
+                <ul class="footer-menu left width-100">
+                    <li class="block left">
+                        <a class="first-link block" href="#">О проекте</a>
+                        <ul>
+                            <li><a href="#">Видео о нас</a></li>
+                            <li><a href="#">Методы обучения</a></li>
+                        </ul>
+                    </li>
+                    <li class="block left">
+                        <a class="first-link block" href="#">Преподавателю</a>
+                        <ul>
+                            <li><a href="#">Как это работает?</a></li>
+                            <li><a href="#">Видеокурс для мастеров</a></li>
+                            <li><a href="#">Первый шаг</a></li>
+                            <li><a href="#">FAQ для преподавателя</a></li>
+                        </ul>
+                    </li>
+                    <li class="block left">
+                        <a class="first-link block" href="#">Соглашения и правила</a>
+                        <ul>
+                            <li><a href="#">Конфиденциальность</a></li>
+                            <li><a href="#">Использование курса</a></li>
+                            <li><a href="#">Лицензионный договор</a></li>
+                            <li><a href="#">О пользовании сайтом</a></li>
+                        </ul>
+                    </li>
+                    <li class="block left"><a class="first-link block" href="#">Контакты</a></li>
+                    
+                    <li class="block left"><a class="first-link block" onclick="return openAuthForm('reg')" href="#">Регистрация</a></li>
+                 
+                </ul>
+                <div class="copy clear">&copy; Slideshot, 2015</div>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+        <div id="error-global" class="error-message-global" style="display: none" onclick="hideError()">
+            <div>
+                <div class="title-block"></div>
+                <div class="text-block"></div>
+            </div>
+        </div>
+<!-- jQuery library -->
+<script src="{{ STATIC_URL }}bootstrap/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="{{ STATIC_URL }}bootstrap/bootstrap.min.js"></script>
+</body>
+</html>

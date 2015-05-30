@@ -1,0 +1,227 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+    font: 13px Arial, Helvetica, Verdana, Tahoma normal normal;
+    min-width: 1180px;
+    position: relative;
+}
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    background-color: #f3f3f3;
+}
+.page-padding-bottom {
+    padding-bottom: 245px;
+}
+.white-background {
+    background-color: #FFF;
+}
+body, h1, h2, h3, h4, h5, h6, ul, p {
+    margin: 0;
+}
+ul {
+    padding: 0;
+    list-style-type: none;
+	vertical-align: text-bottom;
+}
+li {
+    display: inline;
+	
+}
+a {
+    color: #1c977e;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a, input, textarea, select, [role="button"] {
+    outline: none;
+}
+
+/* Buttons */
+
+.material-category .like, .button-1, .button-2 {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #B25600;
+    color: #FFF;
+    text-align: center;
+}
+.button-1, .button-2 {
+    padding: 7px 10px;
+    line-height: 16px;
+    display: inline-block;
+	position:relative;
+}
+.button-1 {
+    border: 1px solid #B25600;
+}
+.button-1+.button-1 {
+    margin-left: 8px;
+}
+.button-1:focus, .button-1:hover {
+    background-color: #FFF;
+    color: #B25600;
+    text-decoration: none;
+}
+.base-color .button-1 {
+    background-color: #FFF;
+    color: #B25600;
+    border-color: transparent;
+}
+.base-color .button-1:hover {
+    color: #FFF;
+    background-color: #6ec9b8;
+    border-color: #FFF;
+}
+
+.button-2 {}
+
+.bolder-button {
+    display: block;
+    border: 3px solid #FFF;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+    padding: 10px 55px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.bolder-button:hover {
+    box-shadow: none;
+    text-shadow: none;
+}
+.bolder-button:hover {
+    text-decoration: none;
+}
+
+/* Header page */
+.header-menu {
+    padding: 12px 0;
+}
+#logotype {
+    width: 175px;
+    height: 50px;
+    background: url('../css/images/logotype-1.png') left 0 no-repeat;
+    margin: -10px 0;
+}
+.base-color #logotype {
+    background-position: left -50px;
+}
+#main-menu {
+    white-space: nowrap;
+    padding-left: 15px;
+    line-height: 36px;
+    height: 32px;
+    font-size: 18px;
+    float: left;
+}
+#main-menu li {
+    display: inline;
+    padding: 0 10px;
+}
+#main-menu a {
+    color: #777;
+}
+#main-menu a:hover {
+    color: #000;
+}
+.base-color #main-menu a {
+    color: #FFF;
+}
+.header-menu .mini-avatar {
+    margin-left: 8px;
+}
+
+/* Header page */
+.center {
+    width: 1180px;
+    margin: 0 auto;
+}
+.center-block {
+    margin: 0 auto;
+}
+.inner-center {
+    margin: 0 5px;
+}
+	
+
+/* Footer page */
+footer {
+    background-color: #FFF;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 245px;
+}
+footer .inner-center:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+}
+.top-inset-shadow {
+    height: 3px;
+    background: url('../css/images/top-inset-shadow.png');
+    position: relative;
+    z-index: 1;
+    margin-bottom: -3px;
+}
+.top-footer {
+    background-color: #B25600;
+    padding: 13px 0;
+}
+.footer-contacts {
+    float: right;
+    font-size: 18px;
+    color: #FFF;
+    line-height: 32px;
+}
+.footer-contacts a {
+    color: inherit;
+}
+.footer-menu {
+    padding: 25px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+.footer-menu a {
+    color: #888;
+}
+.footer-menu a:hover {
+    color: #222;
+}
+.footer-menu a.first-link {
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+.footer-menu li.left+li.left {
+    margin-left: 45px;
+}
+.footer-menu li.left li {
+    display: block;
+    white-space: nowrap;
+}
+.footer-menu li ul {
+    font-size: 11px;
+    line-height: 15px;
+    padding-left: 2px;
+}
+.block {
+	display: inline-block;
+	vertical-align: text-top;	
+}
+footer .copy {
+    padding: 15px 0;
+    color: #737373;
+    line-height: 14px;
+    font-size: 13px;
+}
+
